@@ -1,25 +1,30 @@
-# 🎈 Blank app template
+# 중학생 영어 단어 게임
 
-A simple Streamlit app template for you to modify!
+이 저장소는 Streamlit으로 만든 간단한 중학생 영어 단어 퀴즈 앱입니다.
 
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://blank-app-template.streamlit.app/)
+## 사용 방법
 
-### How to run it on your own machine
+1. 필요한 패키지를 설치합니다.
 
-Prerequisite: install `uv` if you don't already have it.
-
-```
-$ curl -LsSf https://astral.sh/uv/install.sh | sh
-```
-
-1. Sync the dependencies
-
-   ```
-   $ uv sync
+   ```bash
+   pip install streamlit
    ```
 
-2. Run the app
+2. 앱을 실행합니다.
 
+   ```bash
+   streamlit run streamlit_app.py
    ```
-   $ uv run streamlit run streamlit_app.py
-   ```
+
+3. 웹 브라우저에서 열리는 앱에서 "게임 시작" 버튼을 누르고 문제를 풀어보세요.
+
+## 게임 설명
+
+- 영어 단어가 화면에 나오면 뜻을 선택합니다.
+- 맞히면 점수가 올라가고, 틀리면 정답을 보여줍니다.
+- 총 8문제를 풀고 최종 점수를 확인할 수 있습니다.
+
+## 파일
+
+- `streamlit_app.py`: 퀴즈 게임 앱 코드
+- `README.md`: 실행 방법 및 설명
