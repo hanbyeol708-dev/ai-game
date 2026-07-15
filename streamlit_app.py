@@ -63,7 +63,8 @@ def check_answer():
         st.session_state.score += 1
 
 
-if st.button("게임 시작"): 
+start_button = st.button("게임 시작")
+if start_button:
     start_quiz()
 
 if not st.session_state.quiz_words:
@@ -79,10 +80,14 @@ else:
 
     st.session_state.selected = st.radio("뜻을 고르세요", choices, index=choices.index(st.session_state.selected) if st.session_state.selected in choices else 0)
 
-    if not st.session_state.show_result:
-        if st.button("확인"): 
-            check_answer()
-    else:
+    confirm_button = st.button("확인") if not st.session_state.show_result else False
+    next_button = st.button("다음 문제") if st.session_state.show_result and st.session_state.question_index < QUIZ_LENGTH - 1 else False
+    restart_button = st.button("다시 시작") if st.session_state.show_result and st.session_state.question_index == QUIZ_LENGTH - 1 else False
+
+    if confirm_button:
+        check_answer()
+
+    if st.session_state.show_result:
         if st.session_state.selected == current["meaning"]:
             st.success("정답입니다! 🎉")
         else:
@@ -91,12 +96,7 @@ else:
         st.write(f"이번 문제 뜻: **{current['meaning']}**")
         st.write(f"현재 점수: **{st.session_state.score}점**")
 
-        if st.session_state.question_index < QUIZ_LENGTH - 1:
-            if st.button("다음 문제"): 
-                next_question()
-        else:
-            st.balloons()
-            st.write("### 퀴즈가 끝났습니다!")
-            st.write(f"최종 점수: **{st.session_state.score} / {QUIZ_LENGTH}**")
-            if st.button("다시 시작"): 
-                start_quiz()
+        if next_button:
+            next_question()
+        elif restart_button:
+            start_quiz()
